@@ -14,24 +14,20 @@ MONTHS : dict = {'JAN':1, 'FEB':2, 'MAR':3, 'APR':4, 'MAY':5, 'JUN':6, 'JUL':7, 
 
 def string_to_date(instring: str) -> date:
    """ Turn a GEDCOM-format date string into a datetime.date """
-   # Turn the sub-strings into integers
+   # Split into sub-strings
    d = instring.split()
-   # Convert the year into an integer
-   d[0] = int(d[0])
+   # Convert to integers.
    # It could be DD MMM YYYY, or MMM YYYY, or just YYYY.  If necessary,
    # pad it out to DD MMM YYYY, using 28 Jun as the default because it's
    # approximately the middle of the year and every month >= 28 days.
    # THIS IS NOT AN IDEAL SOLUTION.
-   # First months...
    if len(d) == 1:
-      d.append(6)
+      d = [28, 6, int(d[0])]
+   elif len(d) == 2:
+      d = [28, MONTHS[d[0]], int(d[1])]
    else:
-      d[1] = MONTHS[d[1]]
-   # ...then days.
-   if len(d) == 2:
-      d.append(28)
-   else:
-      d[2] = int(d[2])
+      d = [int(d[0]), MONTHS[d[1]], int(d[2])]
+   # Pass it to the date method in (y, m, d) order
    return date(d[2], d[1], d[0])
       
 
