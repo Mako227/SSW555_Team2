@@ -5,6 +5,7 @@ from GedcomClass import Gedcom
 from US01 import US01_DateBeforeCurrentDate
 from US05 import US05_MarriageBeforeDeath
 from US11 import US11_NoBigamists
+from US12 import US12_NoGeriatricParents
 
 def Main():
     #set up the class based on an input file
@@ -39,8 +40,14 @@ def Main():
 
     # Run US11
     for person in individuals:
-       key = person
-       value = ged.people[person]
-       US11_NoBigamists(key, value, ged.people, ged.families)
+        key = person
+        value = ged.people[person]
+        US11_NoBigamists(key, value, ged.people, ged.families)
+
+    # Run US12
+    for person in individuals:
+        key = person
+        value = ged.people[person]
+        US12_NoGeriatricParents(key, value, ged.people, ged.families)
 
 Main()
