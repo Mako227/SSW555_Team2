@@ -4,6 +4,7 @@ Main file that will run all of the user stories
 from GedcomClass import Gedcom
 from US01 import US01_DateBeforeCurrentDate
 from US05 import US05_MarriageBeforeDeath
+from US11 import US11_NoBigamists
 
 def Main():
     #set up the class based on an input file
@@ -35,5 +36,11 @@ def Main():
         husb_info = ged.people[husb_id]
         wife_info = ged.people[wife_id]
         US05_MarriageBeforeDeath(key, value, husb_info, wife_info)
+
+    # Run US11
+    for person in individuals:
+       key = person
+       value = ged.people[person]
+       US11_NoBigamists(key, value, ged.people, ged.families)
 
 Main()
