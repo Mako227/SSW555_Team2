@@ -8,6 +8,7 @@ from US03 import US03_BirthBeforeDeath
 from US05 import US05_MarriageBeforeDeath
 from US11 import US11_NoBigamists
 from US12 import US12_NoGeriatricParents
+from US14 import US14_NoSextuplets
 
 def Main():
     #set up the class based on an input file
@@ -70,5 +71,9 @@ def Main():
         key = person
         value = ged.people[person]
         US12_NoGeriatricParents(key, value, ged.people, ged.families)
+
+    # Run US14
+    for family_id in families:
+        US14_NoSextuplets(family_id, ged.families[family_id], ged.people)
 
 Main()
