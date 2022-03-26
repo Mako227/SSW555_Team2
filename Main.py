@@ -9,6 +9,7 @@ from US05 import US05_MarriageBeforeDeath
 from US11 import US11_NoBigamists
 from US12 import US12_NoGeriatricParents
 from US14 import US14_NoSextuplets
+from US15 import US15_Under15Children
 
 def Main():
     #set up the class based on an input file
@@ -75,5 +76,9 @@ def Main():
     # Run US14
     for family_id in families:
         US14_NoSextuplets(family_id, ged.families[family_id], ged.people)
+
+    # Run US15
+    for family_id in families:
+        US15_Under15Children(family_id, ged.families[family_id])
 
 Main()
