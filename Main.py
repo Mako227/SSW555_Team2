@@ -15,10 +15,12 @@ from US14 import US14_NoSextuplets
 from US15 import US15_Under15Children
 from US16 import US16_SharedSurname
 from US21 import US21_CorrectGenderForRole
+from US23 import US23_UniqueNameAndBirthdate
 
 def Main():
-    #set up the class based on an input file
+    # Create an instance of the class based on an input file
     ged : Gedcom = Gedcom('/Users/tylermarchiano/Documents/Stevens/SSW555/Project/User Stories/amc.ged')
+    # Create lists of keys
     individuals = ged.people.keys()
     families = ged.families.keys()
     
@@ -123,5 +125,9 @@ def Main():
         husb_info = ged.people[husb_id]
         wife_info = ged.people[wife_id]
         US21_CorrectGenderForRole(key, value, husb_info, wife_info, husb_id, wife_id) 
+
+    # Run US23
+    for person in individuals:
+        US23_UniqueNameAndBirthdate(person, ged.people)
         
 Main()
