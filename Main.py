@@ -13,6 +13,7 @@ from US11 import US11_NoBigamists
 from US12 import US12_NoGeriatricParents
 from US14 import US14_NoSextuplets
 from US15 import US15_Under15Children
+from US16 import US16_SharedSurname
 from US21 import US21_CorrectGenderForRole
 
 def Main():
@@ -107,7 +108,11 @@ def Main():
     # Run US15
     for family_id in families:
         US15_Under15Children(family_id, ged.families[family_id])
-        
+
+    # Run US16
+    for family_id in families:
+        US16_SharedSurname(family_id, ged.families[family_id], ged.people)
+
     #Run US21
     #Need info from families to get gender info from individual husband and wife info
     for family in families:
