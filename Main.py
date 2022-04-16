@@ -18,6 +18,7 @@ from US15 import US15_Under15Children
 from US16 import US16_SharedSurname
 from US21 import US21_CorrectGenderForRole
 from US23 import US23_UniqueNameAndBirthdate
+from US25 import US25_UniqueFirstNames
 from US29 import US29_ListDeceased
 from US31 import US31_ListLivingSingle
 
@@ -145,6 +146,10 @@ def Main():
     for person in individuals:
         US23_UniqueNameAndBirthdate(person, ged.people)
     
+    # Run US25
+    for family_id in families:
+        US25_UniqueFirstNames(ged.families[family_id], ged.people)
+
     #Run US29
     #Only death dates matter so can just check individuals
     for person in individuals:
